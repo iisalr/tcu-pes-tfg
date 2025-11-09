@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selección de Carrera PES - Portal Académico ULatina</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #58585a;
+      background: #f5f5f5;
+    }
+
+    /* Navegación */
+    .main-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      border-bottom: 3px solid #93c844;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portal-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #58585a;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #58585a;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #f8f9fa;
+    }
+
+    /* Contenido Principal */
+    .main-content {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .page-hero {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, #006482, #93c844);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .hero-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .hero-header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    .page-content {
+      padding: 50px 40px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: #93c844;
+      padding: 20px 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      color: white;
+      box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 700;
+    }
+
+    .breadcrumb a:hover {
+      color: white;
+    }
+
+    .breadcrumb-separator {
+      margin: 0 15px;
+      font-size: 1.2rem;
+    }
+
+    /* Selector de Carrera */
+    .career-selector {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #93c844;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.6s ease forwards;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .career-selector h3 {
+      color: #006482;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .career-selector > p {
+      text-align: center;
+      color: #58585a;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    /* Grid de Carreras */
+    .careers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .career-option {
+      background: linear-gradient(135deg, rgba(0, 100, 130, 0.05), rgba(147, 200, 68, 0.05));
+      border: 3px solid rgba(0, 100, 130, 0.2);
+      border-radius: 15px;
+      padding: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .career-option:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: #93c844;
+      box-shadow: 0 15px 40px rgba(147, 200, 68, 0.3);
+      background: linear-gradient(135deg, rgba(0, 100, 130, 0.1), rgba(147, 200, 68, 0.1));
+    }
+
+    .career-option:active {
+      transform: scale(0.98);
+    }
+
+    .career-option .icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .career-option:hover .icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .career-option h4 {
+      color: #006482;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .career-option:hover h4 {
+      color: #93c844;
+    }
+
+    /* Información Adicional */
+    .info-section {
+      background: white;
+      border-radius: 25px;
+      padding: 50px 40px;
+      margin: 60px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #93c844;
+    }
+
+    .info-title {
+      font-size: 2rem;
+      color: #006482;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .info-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .info-card {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.4s ease;
+    }
+
+    .info-card:hover {
+      border-color: #93c844;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .info-card h4 {
+      color: #006482;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .info-card h4 a {
+      color: #006482;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .info-card h4 a:hover {
+      color: #93c844;
+      text-decoration: underline;
+    }
+
+    .info-card p {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #58585a;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-header h1 {
+        font-size: 2rem;
+      }
+
+      .hero-header p {
+        font-size: 1rem;
+      }
+
+      .career-selector {
+        padding: 30px 20px;
+      }
+
+      .career-selector h3 {
+        font-size: 1.5rem;
+      }
+
+      .careers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+
+      .info-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-content {
+        padding: 30px 20px;
+      }
+
+      .career-option {
+        padding: 25px 15px;
+      }
+
+      .career-option .icon {
+        font-size: 2.5rem;
+      }
+
+      .career-option h4 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación principal -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="portal-logo">Portal Académico ULatina</div>
+      <ul class="nav-links">
+        <li><a href="/PAGINA PRINCIPAL/index.html">Inicio</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoTCU/tcu.html">TCU</a></li>
+        <li><a href="seleccionPES.html">PES</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoTFG/tfg.html">TFG</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <!-- Hero de página -->
+    <div class="page-hero">
+      <div class="hero-header">
+        <h1>Práctica Empresarial Supervisada</h1>
+        <p>Selecciona tu carrera para continuar</p>
+      </div>
+
+      <div class="page-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="/PAGINA PRINCIPAL/index.html">🏠 Inicio</a>
+          <span class="breadcrumb-separator">→</span>
+          <span>🏢 Selección PES</span>
+        </div>
+
+        <!-- Selector de Carrera -->
+        <div class="career-selector">
+          <h3>Selecciona tu Carrera</h3>
+          <p>Elige tu programa de ingeniería para acceder a los documentos correspondientes</p>
+
+          <div class="careers-grid">
+            <a href="/PAGINA PRINCIPAL/ProcesoPES/ing_computacionales.html" class="career-option">
+              <div class="icon">💻</div>
+              <h4>Ingeniería en Sistemas Computacionales</h4>
+            </a>
+
+            <a href="/PAGINA PRINCIPAL/ProcesoPES/ing_informacion.html" class="career-option">
+              <div class="icon">📊</div>
+              <h4>Ingeniería en Sistemas de Información</h4>
+            </a>
+
+            <a href="/PAGINA PRINCIPAL/ProcesoPES/ing_software.html" class="career-option">
+              <div class="icon">⚙️</div>
+              <h4>Ingeniería del Software</h4>
+            </a>
+          </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="info-section">
+          <h3 class="info-title">Información Adicional</h3>
+          <div class="info-cards-grid">
+            <div class="info-card">
+              <div class="info-icon">⏰</div>
+              <h4>Horarios de Atención</h4>
+              <p>Lunes a Viernes: 2:00 PM - 4:00 PM</p>
+              <p>Coordinación Académica</p>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">📧</div>
+              <h4>Contacto Directo</h4>
+              <p>infosistemas@ulatina.cr</p>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">📚</div>
+              <h4>
+                <a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug">
+                  Recursos
+                </a>
+              </h4>
+              <p>Plantillas de documentos</p>
+              <p>Guías de procedimiento</p>
+              <p>FAQs y tutoriales</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Animaciones de entrada
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.career-selector');
+      
+      fadeElements.forEach((element, index) => {
+        element.style.animationDelay = (index * 0.2) + 's';
+      });
+
+      // Efecto de clic en las opciones de carrera
+      const careerOptions = document.querySelectorAll('.career-option');
+      careerOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+          this.style.transform = 'scale(0.95)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

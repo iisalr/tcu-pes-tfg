@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proceso TCU - Portal Académico ULatina</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #58585a;
+      background: #f5f5f5;
+    }
+
+    /* Navegación */
+    .main-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      border-bottom: 3px solid #93c844;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portal-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #58585a;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #58585a;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #f8f9fa;
+    }
+
+    /* Contenido Principal */
+    .main-content {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .page-hero {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, #006482, #93c844);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .hero-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .hero-header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    .page-content {
+      padding: 50px 40px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: #93c844;
+      padding: 20px 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      color: white;
+      box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 700;
+    }
+
+    .breadcrumb a:hover {
+      color: white;
+    }
+
+    .breadcrumb-separator {
+      margin: 0 15px;
+      font-size: 1.8rem;
+    }
+
+    /* Timeline de Pasos */
+    .steps-container {
+      position: relative;
+      margin: 50px 0;
+    }
+
+    .steps-line {
+      position: absolute;
+      left: 50px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(#93c844, #006482);
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .step-item {
+      background: white;
+      border-radius: 25px;
+      margin: 40px 0 40px 100px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 3px solid transparent;
+      transition: all 0.4s ease;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .step-item.fade-in {
+      animation: slideInUp 0.6s ease forwards;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-item:hover {
+      border-color: #93c844;
+      transform: translateX(10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .step-number {
+      background: #006482;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.6rem;
+      margin-right: 30px;
+      box-shadow: 0 10px 25px rgba(0, 100, 130, 0.3);
+      flex-shrink: 0;
+    }
+
+    .step-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #006482;
+    }
+
+    .step-info p {
+      color: #58585a;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Secciones de Documentos */
+    .documents-section {
+      margin-top: 35px;
+      padding: 30px;
+      background: rgba(147, 200, 68, 0.05);
+      border-radius: 20px;
+      border: 2px solid rgba(147, 200, 68, 0.1);
+    }
+
+    .documents-title {
+      color: #006482;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+    }
+
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .document-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+    }
+
+    .document-card:hover {
+      border-color: #93c844;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .document-icon {
+      width: 50px;
+      height: 50px;
+      background: #93c844;
+      color: white;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+      flex-shrink: 0;
+    }
+
+    .document-name {
+      font-weight: 700;
+      color: #006482;
+      font-size: 1.1rem;
+    }
+
+    /* Descargas Rápidas */
+    .quick-downloads {
+      background: rgba(147, 200, 68, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .quick-downloads h5 {
+      color: #006482;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .quick-download-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quick-download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: white;
+      color: #006482;
+      padding: 8px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 100, 130, 0.2);
+    }
+
+    .quick-download-link:hover {
+      background: #006482;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 100, 130, 0.3);
+    }
+
+    /* Alertas de Tiempo */
+    .time-alert {
+      padding: 25px 30px;
+      border-radius: 15px;
+      margin-top: 30px;
+      font-size: 1.05rem;
+      border-left: 5px solid;
+      font-weight: 600;
+    }
+
+    .time-alert.info {
+      background: rgba(0, 100, 130, 0.1);
+      color: #004c63;
+      border-left-color: #006482;
+    }
+
+    .time-alert.warning {
+      background: rgba(251, 191, 36, 0.15);
+      color: #92400e;
+      border-left-color: #fbbf24;
+    }
+
+    .time-alert.success {
+      background: rgba(147, 200, 68, 0.15);
+      color: #166534;
+      border-left-color: #93c844;
+    }
+
+    /* Sección de Instrucciones */
+    .instructions-section {
+      margin-top: 35px;
+      padding: 30px;
+      background: rgba(0, 100, 130, 0.05);
+      border-radius: 20px;
+      border: 2px solid rgba(0, 100, 130, 0.1);
+    }
+
+    .instructions-title {
+      color: #006482;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .instructions-list {
+      list-style: none;
+    }
+
+    .instructions-list li {
+      padding: 12px 0 12px 30px;
+      position: relative;
+      color: #58585a;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .instructions-list li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #93c844;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .instructions-list a {
+      color: #93c844;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .instructions-list a:hover {
+      color: #006482;
+    }
+
+    /* Información Adicional */
+    .info-section {
+      background: white;
+      border-radius: 25px;
+      padding: 50px 40px;
+      margin: 60px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #93c844;
+    }
+
+    .info-title {
+      font-size: 2rem;
+      color: #006482;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .info-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .info-card {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.4s ease;
+    }
+
+    .info-card:hover {
+      border-color: #93c844;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .info-card h4 {
+      color: #006482;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .info-card h4 a {
+      color: #006482;
+      text-decoration: underline;
+    }
+
+    .info-card h4 a:hover {
+      color: #93c844;
+    }
+
+    .info-card p {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #58585a;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-header h1 {
+        font-size: 2rem;
+      }
+
+      .hero-header p {
+        font-size: 1rem;
+      }
+
+      .steps-line {
+        left: 30px;
+      }
+
+      .step-item {
+        margin-left: 80px;
+        padding: 30px 20px;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        margin-right: 20px;
+      }
+
+      .step-info h3 {
+        font-size: 1.4rem;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+
+      .documents-grid,
+      .info-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación principal -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="portal-logo">Portal Académico ULatina</div>
+      <ul class="nav-links">
+        <li><a href="/PAGINA PRINCIPAL/index.html">Inicio</a></li>
+        <li><a href="tcu.html">TCU</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html">PES</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoTFG/tfg.html">TFG</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <!-- Hero de página -->
+    <div class="page-hero">
+      <div class="hero-header">
+        <h1>Trabajo Comunal Universitario</h1>
+        <p>Proceso completo de documentación TCU</p>
+      </div>
+
+      <div class="page-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="/PAGINA PRINCIPAL/index.html">🏠 Inicio</a>
+          <span class="breadcrumb-separator">→</span>
+          <span>📋 TCU</span>
+        </div>
+
+        <!-- Timeline de pasos -->
+        <div class="steps-container">
+          <div class="steps-line"></div>
+
+          <!-- Paso 1 -->
+          <div class="step-item">
+            <div class="step-header">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <h3>Documentación Inicial</h3>
+                <p>Presenta la documentación inicial entre la semana 8 y 15 del cuatrimestre anterior al que deseas matricular</p>
+              </div>
+            </div>
+
+            <div class="documents-section">
+              <div class="documents-title">📋 Documentos requeridos:</div>
+              <div class="documents-grid">
+                <div class="document-card">
+                  <div class="document-icon">📄</div>
+                  <div class="document-name">Anteproyecto TCU</div>
+                </div>
+                <div class="document-card">
+                  <div class="document-icon">🏢</div>
+                  <div class="document-name">Carta de aceptación de la empresa</div>
+                </div>
+              </div>
+
+              <div class="quick-downloads">
+                <h5>Descargas rápidas:</h5>
+                <div class="quick-download-links">
+                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EYi09R49rUFNowQN1HHUQ1YB5-rMSEhGSp0MPaS0NZm34w?e=iamHk5" target="_blank" class="quick-download-link">
+                    📄 Anteproyecto TCU
+                  </a>
+                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/ETBFE7u68OVOrh2RcY41XYMBYSUhV-BC2-Xe5ns2LRMNBw?e=C7Oipp" target="_blank" class="quick-download-link">
+                    🏢 Carta de Aceptación
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="time-alert info">
+              <strong>⏰ Plazo:</strong> Semana 8-15 del cuatrimestre anterior al que deseas matricular
+            </div>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="step-item">
+            <div class="step-header">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <h3>Carga al Sistema</h3>
+                <p>Una vez aprobados los documentos por correo, cárgalos al sistema de autoservicio</p>
+              </div>
+            </div>
+
+            <div class="documents-section">
+              <div class="documents-title">🎯 Acción requerida:</div>
+              <div class="documents-grid">
+                <div class="document-card">
+                  <div class="document-icon">🔗</div>
+                  <div class="document-name">Cargar documentos al sistema</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="time-alert warning">
+              <strong>⏰ Plazo:</strong> A partir de semana 12 del periodo anterior al que matriculo hasta semana 1 del periodo en que matriculó
+            </div>
+
+            <div class="instructions-section">
+              <div class="instructions-title">📋 Instrucciones:</div>
+              <p style="margin-bottom: 15px; color: #58585a; font-weight: 600;">Para cargar estos documentos:</p>
+              <ul class="instructions-list">
+                <li>Accede al <a href="https://bit.ly/ULatina_AutoServicio" target="_blank">Sistema AutoServicio ULatina</a></li>
+                <li>Busca la sección correspondiente a tu programa (TCU)</li>
+                <li>Sube los documentos en formato PDF</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="step-item">
+            <div class="step-header">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <h3>Primera Revisión de Bitácoras</h3>
+                <p>Presenta el primer avance de las bitácoras de trabajo</p>
+              </div>
+            </div>
+
+            <div class="documents-section">
+              <div class="documents-title">📊 Documentos requeridos:</div>
+              <div class="documents-grid">
+                <div class="document-card">
+                  <div class="document-icon">📊</div>
+                  <div class="document-name">Avance de bitácoras</div>
+                </div>
+              </div>
+
+              <div class="quick-downloads">
+                <h5>Descargas rápidas:</h5>
+                <div class="quick-download-links">
+                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EfZ8thnI8xVArmoathkaWQEBG1w4WHFM8yZdlwtjIQZmdg?e=2hScDJ" target="_blank" class="quick-download-link">
+                    📊 Formato de Bitácoras
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="time-alert info">
+              <strong>📅 Programado:</strong> Semana 8 del cuatrimestre
+            </div>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="step-item">
+            <div class="step-header">
+              <div class="step-number">4</div>
+              <div class="step-info">
+                <h3>Segunda Revisión de Bitácoras</h3>
+                <p>Presenta la segunda revisión de bitácoras</p>
+              </div>
+            </div>
+
+            <div class="documents-section">
+              <div class="documents-title">📋 Documentos requeridos:</div>
+              <div class="documents-grid">
+                <div class="document-card">
+                  <div class="document-icon">📋</div>
+                  <div class="document-name">Segundo avance de bitácoras</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="time-alert info">
+              <strong>📅 Programado:</strong> Semana 13 del cuatrimestre
+            </div>
+          </div>
+
+          <!-- Paso 5 -->
+          <div class="step-item">
+            <div class="step-header">
+              <div class="step-number">5</div>
+              <div class="step-info">
+                <h3>Documentación Final</h3>
+                <p>Presenta el informe final y carta de aprobación</p>
+              </div>
+            </div>
+
+            <div class="documents-section">
+              <div class="documents-title">📚 Documentos requeridos:</div>
+              <div class="documents-grid">
+                <div class="document-card">
+                  <div class="document-icon">📖</div>
+                  <div class="document-name">Informe final TCU</div>
+                </div>
+                <div class="document-card">
+                  <div class="document-icon">✅</div>
+                  <div class="document-name">Carta de aprobación</div>
+                </div>
+              </div>
+
+              <div class="quick-downloads">
+                <h5>Descargas rápidas:</h5>
+                <div class="quick-download-links">
+                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EYGOSvEjob1JslNNleO7iTIBZeTlIb8vdjUDBYdfzpE_-w?e=zoWknX" target="_blank" class="quick-download-link">
+                    📖 Informe Final TCU
+                  </a>
+                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/ESD3MqbJT45Gt7ZK5QYLqTMBTy3-ITtYLyTY5obP3IBmDw?e=05AKWJ" target="_blank" class="quick-download-link">
+                    ✅ Carta de Aprobación
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="time-alert success">
+              <strong>🎯 Final:</strong> Semana 15 del periodo
+            </div>
+          </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="info-section">
+          <h3 class="info-title">Información Adicional</h3>
+          <div class="info-cards-grid">
+            <div class="info-card">
+              <div class="info-icon">⏰</div>
+              <h4>Horarios de Atención</h4>
+              <p>Lunes a Viernes: 2:00 PM - 4:00 PM</p>
+              <p>Coordinación Académica</p>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">📧</div>
+              <h4>Contacto Directo</h4>
+              <p>infosistemas@ulatina.cr</p>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">📚</div>
+              <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug">Recursos</a></h4>
+              <p>Plantillas de documentos</p>
+              <p>Guías de procedimiento</p>
+              <p>FAQs y tutoriales</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Animaciones de entrada con Intersection Observer
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.step-item').forEach(function(el) {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

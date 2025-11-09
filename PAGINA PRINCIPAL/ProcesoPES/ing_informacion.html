@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PES - Sistemas de Información - Portal Académico ULatina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #58585a;
+        }
+
+        /* Navegación */
+        .main-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 3px solid #93c844;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .portal-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #58585a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #58585a;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #93c844;
+            color: white;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #006482, #93c844);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .career-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .page-content {
+            padding: 50px 40px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #93c844;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .steps-container {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #93c844, #006482);
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        .step-item {
+            background: white;
+            border-radius: 25px;
+            margin: 40px 0 40px 100px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .step-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-color: #93c844;
+        }
+
+        .step-item::before {
+            content: '';
+            position: absolute;
+            left: -75px;
+            top: 30px;
+            width: 25px;
+            height: 25px;
+            background: #93c844;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 8px white, 0 0 0 12px #93c844;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            background: #006482;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.6rem;
+            margin-right: 30px;
+            box-shadow: 0 10px 25px rgba(0, 100, 130, 0.3);
+            flex-shrink: 0;
+        }
+
+        .step-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #006482;
+        }
+
+        .step-info p {
+            color: #58585a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Documentos */
+        .documents-section {
+            margin-top: 35px;
+            padding: 30px;
+            background: rgba(147, 200, 68, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 200, 68, 0.1);
+        }
+
+        .documents-title {
+            color: #006482;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .document-card:hover {
+            border-color: #93c844;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(147, 200, 68, 0.15);
+        }
+
+        .document-card.info-only {
+            background: linear-gradient(135deg, rgba(0, 100, 130, 0.05), rgba(147, 200, 68, 0.05));
+            cursor: default;
+        }
+
+        .document-icon {
+            width: 50px;
+            height: 50px;
+            background: #93c844;
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+            flex-shrink: 0;
+        }
+
+        .info-only .document-icon {
+            background: #006482;
+            box-shadow: 0 5px 15px rgba(0, 100, 130, 0.3);
+        }
+
+        .document-name {
+            font-weight: 700;
+            color: #006482;
+            font-size: 1.1rem;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: #006482;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* Alertas */
+        .time-alert {
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.05rem;
+            border-left: 5px solid;
+            font-weight: 600;
+        }
+
+        .time-alert.warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: #92400e;
+            border-left-color: #fbbf24;
+        }
+
+        .time-alert.info {
+            background: rgba(0, 100, 130, 0.1);
+            color: #004c63;
+            border-left-color: #006482;
+        }
+
+        .time-alert.success {
+            background: rgba(147, 200, 68, 0.15);
+            color: #166534;
+            border-left-color: #93c844;
+        }
+
+        /* Información adicional */
+        .info-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #93c844;
+        }
+
+        .info-title {
+            font-size: 2rem;
+            color: #006482;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .info-card:hover {
+            border-color: #93c844;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(147, 200, 68, 0.15);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .info-card h4 {
+            color: #006482;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #58585a;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: #006482;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .info-card a:hover {
+            color: #93c844;
+        }
+
+        /* Animaciones */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+
+            .step-item {
+                margin-left: 80px;
+                padding: 30px 25px;
+            }
+
+            .step-item::before {
+                left: -65px;
+            }
+
+            .steps-line {
+                left: 40px;
+            }
+
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .documents-grid,
+            .info-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación principal -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="portal-logo">Portal Académico ULatina</div>
+            <ul class="nav-links">
+                <li><a href="/PAGINA PRINCIPAL/index.html">Inicio</a></li>
+                <li><a href="/PAGINA PRINCIPAL/ProcesoTCU/tcu.html">TCU</a></li>
+                <li><a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html">PES</a></li>
+                <li><a href="/PAGINA PRINCIPAL/ProcesoTFG/tfg.html">TFG</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <!-- Hero de página -->
+        <div class="page-hero">
+            <div class="hero-header">
+                <h1>Práctica Empresarial Supervisada</h1>
+                <p>Proceso completo de documentación PES</p>
+                <div class="career-badge">Ingeniería en Sistemas de Información</div>
+            </div>
+
+            <div class="page-content">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <a href="/PAGINA PRINCIPAL/index.html">Inicio</a>
+                    <span class="breadcrumb-separator">→</span>
+                    <a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html">Selección PES</a>
+                    <span class="breadcrumb-separator">→</span>
+                    <span>Sistemas de Información</span>
+                </div>
+
+                <!-- Timeline de pasos -->
+                <div class="steps-container">
+                    <div class="steps-line"></div>
+
+                    <!-- Paso 1: Antes de Matricular -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-info">
+                                <h3>Antes de Matricular</h3>
+                                <p>Documentos que debes presentar ANTES de matricular la práctica (semana 8-15 del cuatrimestre anterior)</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">📋 Documentos requeridos:</div>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7BA6743D3B-DBB0-4F36-8FE4-65B019C11120%7D&file=1%20Carta%20a%20la%20empresa.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">🏢</div>
+                                    <div class="document-name">Carta a la empresa</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7BF211C709-5B3D-47DB-B33B-077A6A897989%7D&file=2%20AnteProyecto.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📄</div>
+                                    <div class="document-name">Anteproyecto</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/lindsay_rubio_ulatina_net/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flindsay%5Frubio%5Fulatina%5Fnet%2FDocuments%2FDocumentaci%C3%B3n%20PES%20BISI29%2F4%20Lineamientos%20de%20Pr%C3%A1ctica%20Empresarial%20Sistemas%2Epdf" target="_blank" class="document-card info-only">
+                                    <div class="document-icon">📖</div>
+                                    <div>
+                                        <div class="document-name">
+                                            Lineamientos de la práctica empresarial supervisada
+                                            <span class="info-badge">INFORMATIVO</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert warning">
+                            <strong>⚠️ Muy Importante:</strong> Estos documentos deben estar aprobados ANTES de poder matricular la PES
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Carga al Formulario -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-info">
+                                <h3>Carga al Formulario</h3>
+                                <p>Carga el anteproyecto aprobado al formulario</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">🎯 Acción requerida:</div>
+                            <div class="documents-grid">
+                                <a href="https://forms.office.com/pages/responsepage.aspx?id=t1kuHSX6BESLldAt1LfLmCm6GQBD5mpFlC2L6xyAeJVUQlhVUUlKNDNCOU0xRDgwN1ZQVVVWTlFNOS4u&route=shorturl" target="_blank" class="document-card">
+                                    <div class="document-icon">🔗</div>
+                                    <div class="document-name">Cargar al Formulario</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert info">
+                            <strong>⏰ Importante:</strong> Carga el anteproyecto al formulario
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Durante la Práctica -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-info">
+                                <h3>Durante la Práctica</h3>
+                                <p>Documentos y actividades que debes completar durante el desarrollo de la práctica</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">📊 Actividades continuas:</div>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B1ED63ED6-9736-45F0-8E30-396441015606%7D&file=6%20Bit%C3%A1coras.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📊</div>
+                                    <div class="document-name">Plantilla de bitácoras</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B33A5D262-EC6A-44D4-98D3-018B5FF53040%7D&file=5%20Esqueleto%20de%20documento%20final.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📝</div>
+                                    <div class="document-name">Esqueleto de documento final</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert info">
+                            <strong>⏰ Entregas:</strong> Las bitácoras se presentan semanalmente. El documento final se va completando durante toda la práctica con tus evidencias.
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Durante el Cuatrimestre -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-info">
+                                <h3>Durante el Cuatrimestre</h3>
+                                <p>Documento que debes presentar aproximadamente en la semana 5 o 6 del cuatrimestre</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">📋 Documento requerido:</div>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7BFFBD7AA0-4094-4EA8-978C-05C3610AE90D%7D&file=3%20Acta%20Constitutiva.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📋</div>
+                                    <div class="document-name">Acta constitutiva</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert warning">
+                            <strong>📅 Plazo:</strong> Semana 5-6 del cuatrimestre (a mitad de la práctica)
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Documentación Final -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <div class="step-info">
+                                <h3>Documentación Final</h3>
+                                <p>Documentos que debes presentar cuando termines la práctica empresarial</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">📚 Documentos de cierre:</div>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/lindsay_rubio_ulatina_net/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Flindsay%5Frubio%5Fulatina%5Fnet%2FDocuments%2FDocumentaci%C3%B3n%20PES%20BISI29%2F7%20Licencia%20de%20distribuci%C3%B3n%20no%20exclusiva%20%2D%20LATINA%20%281%29%2Epdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📜</div>
+                                    <div class="document-name">Licencia de distribución no exclusiva</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B53F2726F-D22F-494D-BBEF-C2DF1B110FB1%7D&file=8%20Carta%20de%20Cumplimiento%20de%20Objetivos%20por%20parte%20de%20Empresa.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">✅</div>
+                                    <div class="document-name">Carta de cumplimiento de objetivos</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7BDE8DDFB9-0501-4FE6-A287-3893756821ED%7D&file=9%20Carta%20de%20Aprobaci%C3%B3n%20de%20Empresa%20con%20Nota%20Final%20del%20producto.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">⭐</div>
+                                    <div class="document-name">Carta de aprobación de empresa con nota final</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B7066F0E3-A76D-44BB-B01A-D5A660647606%7D&file=10%20Carta%20de%20aprobaci%C3%B3n%20del%20tutor.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">👨‍🏫</div>
+                                    <div class="document-name">Carta de aprobación del tutor</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7BEA125918-8261-44FE-B373-1FBCB5DD42F2%7D&file=11%20Carta%20de%20Fil%C3%B3logo.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📝</div>
+                                    <div class="document-name">Carta de filólogo</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B3AFAE49E-F1B2-491D-A532-49E9757DC851%7D&file=12%20Acta%20de%20Defensa.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">📋</div>
+                                    <div class="document-name">Acta de defensa</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/r/personal/lindsay_rubio_ulatina_net/_layouts/15/Doc.aspx?sourcedoc=%7B3AAD0B54-E9F1-40B7-A682-216DB6B3A6AE%7D&file=13%20Hoja%20del%20tribunal.docx&action=default&mobileredirect=true" target="_blank" class="document-card">
+                                    <div class="document-icon">👥</div>
+                                    <div class="document-name">Hoja del tribunal</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert success">
+                            <strong>🎯 Plazo:</strong> Todos estos documentos se presentan al finalizar la práctica (semana 14-15 del cuatrimestre)
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Carga Final al Formulario -->
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">6</div>
+                            <div class="step-info">
+                                <h3>Carga al Formulario</h3>
+                                <p>Carga todos los documentos aprobados al formulario</p>
+                            </div>
+                        </div>
+
+                        <div class="documents-section">
+                            <div class="documents-title">🎯 Acción requerida:</div>
+                            <div class="documents-grid">
+                                <a href="https://forms.office.com/Pages/DesignPageV2.aspx?prevorigin=shell&origin=NeoPortalPage&subpage=design&id=t1kuHSX6BESLldAt1LfLmCm6GQBD5mpFlC2L6xyAeJVUNThUQlNSUkdEU0pEQU5VMEJZMTJCQTFHUC4u" target="_blank" class="document-card">
+                                    <div class="document-icon">🔗</div>
+                                    <div class="document-name">Cargar al Formulario</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="time-alert info">
+                            <strong>⏰ Importante:</strong> Carga todos los documentos finalizados al formulario
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="info-section">
+                    <h3 class="info-title">Información Adicional</h3>
+                    <div class="info-cards-grid">
+                        <div class="info-card">
+                            <div class="info-icon">⏰</div>
+                            <h4>Horarios de Atención</h4>
+                            <p>Lunes a Viernes: 2:00 PM - 4:00 PM</p>
+                            <p>Coordinación Académica</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <h4>Contacto Directo</h4>
+                            <p>infosistemas@ulatina.cr</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">📚</div>
+                            <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug" target="_blank">Recursos</a></h4>
+                            <p>Plantillas de documentos</p>
+                            <p>Guías de procedimiento</p>
+                            <p>FAQs y tutoriales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Animaciones de entrada con Intersection Observer
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.step-item').forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // Track de descargas de documentos
+            document.querySelectorAll('.document-card[href]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const fileName = this.querySelector('.document-name').textContent.trim();
+                    console.log(`Descarga iniciada: ${fileName} - Carrera: Sistemas de Información`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

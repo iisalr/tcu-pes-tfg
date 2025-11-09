@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Académico ULatina - Inicio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #58585a;
+      background: #f5f5f5;
+    }
+
+    /* Navegación */
+    .main-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      border-bottom: 3px solid #93c844;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portal-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #58585a;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #58585a;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a.active {
+      background: #93c844;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+    }
+
+    .nav-links a:hover:not(.active) {
+      background: #f8f9fa;
+    }
+
+    /* Contenido Principal */
+    .main-content {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, #006482, #93c844);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .hero-header h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .hero-header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    .hero-content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #006482;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #58585a;
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    /* Grid de Programas */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin: 50px 0;
+    }
+
+    .program-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 3px solid transparent;
+      animation: slideInUp 0.6s ease forwards;
+    }
+
+    .program-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      border-color: #93c844;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .program-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .program-card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .card-header {
+      height: 120px;
+      background: #006482;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .program-acronym {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .program-subtitle {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .card-body {
+      padding: 35px 30px;
+    }
+
+    .program-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #006482;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .program-description {
+      font-size: 1rem;
+      color: #58585a;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .program-details {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-left: 4px solid #93c844;
+    }
+
+    .details-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #006482;
+      margin-bottom: 15px;
+    }
+
+    .details-list {
+      list-style: none;
+    }
+
+    .details-list li {
+      padding: 8px 0 8px 25px;
+      position: relative;
+      color: #58585a;
+      font-size: 0.95rem;
+    }
+
+    .details-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #93c844;
+      font-weight: bold;
+    }
+
+    .process-info {
+      background: rgba(147, 200, 68, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-left: 4px solid #93c844;
+    }
+
+    .process-title {
+      font-weight: 700;
+      color: #006482;
+      margin-bottom: 10px;
+    }
+
+    .process-text {
+      color: #58585a;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .action-button {
+      display: block;
+      width: 100%;
+      padding: 18px 25px;
+      background: #93c844;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(147, 200, 68, 0.3);
+    }
+
+    .action-button:hover {
+      background: #7db031;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(147, 200, 68, 0.4);
+    }
+
+    .action-button.disabled {
+      background: #58585a;
+      box-shadow: 0 8px 20px rgba(88, 88, 90, 0.3);
+      cursor: not-allowed;
+    }
+
+    /* Información Adicional */
+    .info-section {
+      background: white;
+      border-radius: 25px;
+      padding: 50px 40px;
+      margin: 60px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #93c844;
+    }
+
+    .info-title {
+      font-size: 2rem;
+      color: #006482;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .info-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .info-card {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.4s ease;
+    }
+
+    .info-card:hover {
+      border-color: #93c844;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .info-card h4 {
+      color: #006482;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .info-card p {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #58585a;
+      line-height: 1.6;
+    }
+
+    .info-card a {
+      color: #006482;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .info-card a:hover {
+      color: #93c844;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-header h1 {
+        font-size: 2rem;
+      }
+
+      .hero-header p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .programs-grid,
+      .info-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación principal -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="portal-logo">Portal Académico ULatina</div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="ProcesoTCU/tcu.html">TCU</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html">PES</a></li>
+        <li><a href="/PAGINA PRINCIPAL/ProcesoTFG/tfg.html">TFG</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <!-- Hero section -->
+    <div class="hero-section">
+      <div class="hero-header">
+        <h1>Portal de Documentación Académica</h1>
+        <p>Gestiona todos los procesos de documentación de tus proyectos académicos</p>
+      </div>
+
+      <div class="hero-content">
+        <h2 class="section-title">Selecciona tu Programa</h2>
+        <p class="section-subtitle">Elige el programa académico para el cual necesitas gestionar documentación</p>
+
+        <div class="programs-grid">
+          <!-- TCU Card -->
+          <div class="program-card">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="program-acronym">TCU</div>
+                <div class="program-subtitle">Trabajo Comunal Universitario</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="program-title">Trabajo Comunal Universitario</h3>
+              <p class="program-description">
+                El Trabajo Comunal Universitario es una actividad académica que vincula a los estudiantes con la comunidad para aplicar conocimientos en beneficio social.
+              </p>
+              <div class="program-details">
+                <div class="details-title">Características:</div>
+                <ul class="details-list">
+                  <li>Duración: Un cuatrimestre académico</li>
+                  <li>Modalidad: Presencial en comunidades</li>
+                  <li>Requisito: Tener aprobados los créditos mínimos</li>
+                  <li>Objetivo: Aplicar conocimientos en proyectos comunitarios</li>
+                </ul>
+              </div>
+              <div class="process-info">
+                <div class="process-title">Proceso:</div>
+                <p class="process-text">
+                  5 pasos desde la documentación inicial hasta el informe final, incluyendo presentación de anteproyecto, bitácoras y evaluación final.
+                </p>
+              </div>
+              <a href="/PAGINA PRINCIPAL/ProcesoTCU/tcu.html" class="action-button">Ver Proceso TCU</a>
+            </div>
+          </div>
+
+          <!-- PES Card -->
+          <div class="program-card">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="program-acronym">PES</div>
+                <div class="program-subtitle">Práctica Empresarial Supervisada</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="program-title">Práctica Empresarial Supervisada</h3>
+              <p class="program-description">
+                La Práctica Empresarial Supervisada es una experiencia laboral supervisada donde los estudiantes aplican conocimientos en un ambiente empresarial real.
+              </p>
+              <div class="program-details">
+                <div class="details-title">Características:</div>
+                <ul class="details-list">
+                  <li>Duración: Un cuatrimestre académico</li>
+                  <li>Modalidad: Presencial en empresas</li>
+                  <li>Requisito: Presentar documentación antes de matricular</li>
+                  <li>Objetivo: Experiencia laboral profesional supervisada</li>
+                </ul>
+              </div>
+              <div class="process-info">
+                <div class="process-title">Proceso:</div>
+                <p class="process-text">
+                  4 pasos desde la búsqueda de empresa hasta la documentación final, incluyendo matriculación, desarrollo de la práctica y evaluación empresarial.
+                </p>
+              </div>
+              <a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html" class="action-button">Ver Proceso PES</a>
+            </div>
+          </div>
+
+          <!-- TFG Card -->
+          <div class="program-card">
+            <div class="card-header">
+              <div class="card-header-content">
+                <div class="program-acronym">TFG</div>
+                <div class="program-subtitle">Trabajo Final de Graduación</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="program-title">Trabajo Final de Graduación</h3>
+              <p class="program-description">
+                El Trabajo Final de Graduación es un proyecto de investigación que demuestra el dominio de competencias profesionales para obtener el título universitario.
+              </p>
+              <div class="program-details">
+                <div class="details-title">Características:</div>
+                <ul class="details-list">
+                  <li>Duración: Variable según el proyecto</li>
+                  <li>Modalidad: Investigación académica</li>
+                  <li>Requisito: Haber completado todos los cursos del plan</li>
+                  <li>Objetivo: Demostrar competencias profesionales</li>
+                </ul>
+              </div>
+              <div class="process-info">
+                <div class="process-title">Proceso:</div>
+                <p class="process-text">
+                  4 pasos desde el anteproyecto hasta la defensa final, incluyendo desarrollo de la investigación, documento final y presentación oral.
+                </p>
+              </div>
+              <a href="/PAGINA PRINCIPAL/ProcesoTFG/tfg.html" class="action-button">Ver Proceso TFG</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="info-section">
+      <h3 class="info-title">Información Adicional</h3>
+      <div class="info-cards-grid">
+        <div class="info-card">
+          <div class="info-icon">⏰</div>
+          <h4>Horarios de Atención</h4>
+          <p>Lunes a Viernes: 2:00 PM - 4:00 PM</p>
+          <p>Coordinación Académica</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <h4>Contacto Directo</h4>
+          <p>infosistemas@ulatina.cr</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📚</div>
+          <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug">Recursos</a></h4>
+          <p>Plantillas de documentos</p>
+          <p>Guías de procedimiento</p>
+          <p>FAQs y tutoriales</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

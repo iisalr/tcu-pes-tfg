@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso TFG - Portal Académico ULatina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #58585a;
+        }
+
+        /* Navegación */
+        .main-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 3px solid #93c844;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .portal-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #58585a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #58585a;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #93c844;
+            color: white;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #006482, #93c844);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .page-content {
+            padding: 50px 40px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #93c844;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Selección de Vías */
+        .pathway-selection {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+            border: 3px solid #fbbf24;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+        }
+
+        .pathway-selection h2 {
+            color: #006482;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .pathway-selection > p {
+            text-align: center;
+            color: #58585a;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .pathway-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pathway-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid;
+        }
+
+        .pathway-card.via-a {
+            border-top-color: #93c844;
+        }
+
+        .pathway-card.via-b {
+            border-top-color: #006482;
+        }
+
+        .pathway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .pathway-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .via-a .pathway-icon {
+            background: linear-gradient(135deg, #93c844, #7ba838);
+        }
+
+        .via-b .pathway-icon {
+            background: linear-gradient(135deg, #006482, #004a63);
+        }
+
+        .pathway-card h3 {
+            color: #58585a;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .pathway-card > p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .pathway-card ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .pathway-card ul li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+
+        .pathway-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #93c844;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .steps-container {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #93c844, #006482);
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        .step-item {
+            background: white;
+            border-radius: 25px;
+            margin: 40px 0 40px 100px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .step-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-color: #93c844;
+        }
+
+        .step-item::before {
+            content: '';
+            position: absolute;
+            left: -75px;
+            top: 30px;
+            width: 25px;
+            height: 25px;
+            background: #93c844;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 8px white, 0 0 0 12px #93c844;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            background: #006482;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.6rem;
+            margin-right: 30px;
+            box-shadow: 0 10px 25px rgba(0, 100, 130, 0.3);
+            flex-shrink: 0;
+        }
+
+        .step-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #006482;
+        }
+
+        .step-info p {
+            color: #58585a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Documentos */
+        .documents-section {
+            margin-top: 35px;
+            padding: 30px;
+            background: rgba(147, 200, 68, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 200, 68, 0.1);
+        }
+
+        .documents-section h4 {
+            color: #006482;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .document-card:hover {
+            border-color: #93c844;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(147, 200, 68, 0.15);
+        }
+
+        .document-icon {
+            width: 50px;
+            height: 50px;
+            background: #93c844;
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 15px rgba(147, 200, 68, 0.3);
+            flex-shrink: 0;
+        }
+
+        .document-name {
+            font-weight: 700;
+            color: #006482;
+            font-size: 1.1rem;
+        }
+
+        /* Alertas */
+        .alert-box {
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 1rem;
+            border-left: 5px solid;
+            line-height: 1.7;
+        }
+
+        .alert-box.warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: #92400e;
+            border-left-color: #fbbf24;
+        }
+
+        .alert-box.info {
+            background: rgba(0, 100, 130, 0.1);
+            color: #004c63;
+            border-left-color: #006482;
+        }
+
+        .alert-box.success {
+            background: rgba(147, 200, 68, 0.15);
+            color: #166534;
+            border-left-color: #93c844;
+        }
+
+        .alert-box ul {
+            margin: 10px 0 0 20px;
+        }
+
+        .alert-box ul li {
+            margin: 5px 0;
+        }
+
+        .time-alert {
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 1.05rem;
+            border-left: 5px solid;
+            font-weight: 600;
+        }
+
+        .time-alert.warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: #92400e;
+            border-left-color: #fbbf24;
+        }
+
+        .time-alert.info {
+            background: rgba(0, 100, 130, 0.1);
+            color: #004c63;
+            border-left-color: #006482;
+        }
+
+        .time-alert.success {
+            background: rgba(147, 200, 68, 0.15);
+            color: #166534;
+            border-left-color: #93c844;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .info-box strong {
+            color: #006482;
+        }
+
+        .tutor-info, .readers-section, .defense-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .tutor-info h4, .readers-section h4, .defense-section h4 {
+            color: #006482;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .reader-distinction {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .reader-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 5px solid;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .reader-card.ti {
+            border-top-color: #006482;
+        }
+
+        .reader-card h4 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .reader-card ul {
+            list-style: none;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .reader-card ul li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+        }
+
+        .reader-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #93c844;
+        }
+
+        /* Tips de defensa */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-card strong {
+            display: block;
+            color: #006482;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 18px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            min-width: 200px;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #93c844;
+            color: white;
+            border-color: #93c844;
+            box-shadow: 0 8px 20px rgba(147, 200, 68, 0.3);
+            margin-top: 15px;
+        }
+
+        .btn-primary:hover {
+            background: #7ba838;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(147, 200, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background: #006482;
+            color: white;
+            border-color: #006482;
+            box-shadow: 0 8px 20px rgba(0, 100, 130, 0.3);
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: #004a63;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 100, 130, 0.4);
+        }
+
+        /* Información adicional */
+        .info-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #93c844;
+        }
+
+        .info-title {
+            font-size: 2rem;
+            color: #006482;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .info-card:hover {
+            border-color: #93c844;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(147, 200, 68, 0.15);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .info-card h4 {
+            color: #006482;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #58585a;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: #006482;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .info-card a:hover {
+            color: #93c844;
+        }
+
+        /* Animaciones */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+
+            .step-item {
+                margin-left: 80px;
+                padding: 30px 25px;
+            }
+
+            .step-item::before {
+                left: -65px;
+            }
+
+            .steps-line {
+                left: 40px;
+            }
+
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .pathway-cards,
+            .documents-grid,
+            .info-cards-grid,
+            .reader-distinction,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación principal -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="portal-logo">Portal Académico ULatina</div>
+            <ul class="nav-links">
+                <li><a href="/PAGINA PRINCIPAL/index.html">Inicio</a></li>
+                <li><a href="/PAGINA PRINCIPAL/ProcesoTCU/tcu.html">TCU</a></li>
+                <li><a href="/PAGINA PRINCIPAL/ProcesoPES/seleccionPES.html">PES</a></li>
+                <li><a href="tfg.html">TFG</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <!-- Hero de página -->
+        <div class="page-hero">
+            <div class="hero-header">
+                <h1>Trabajo Final de Graduación (TFG)</h1>
+                <p>Guía completa del proceso para tu proyecto de graduación</p>
+            </div>
+
+            <div class="page-content">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <a href="/PAGINA PRINCIPAL/index.html">🏠 Inicio</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>📚 Proceso TFG</span>
+                </div>
+
+                <!-- Introducción a las Vías -->
+                <div class="pathway-selection">
+                    <h2>🔀 Fase 1: Selecciona tu vía de inicio</h2>
+                    <p>El proceso varía dependiendo de tu situación académica. Elige la vía que corresponde a tu caso:</p>
+                    
+                    <div class="pathway-cards">
+                        <!-- Vía A -->
+                        <div class="pathway-card via-a">
+                            <div class="pathway-icon">🔄</div>
+                            <h3>Vía A: Estudiante de Regreso</h3>
+                            <p>Para estudiantes que regresan o inician sin curso de metodología</p>
+                            <ul>
+                                <li>Llenar Plantilla Básica de Anteproyecto</li>
+                                <li>Incluir: Objetivo General, Objetivos Específicos</li>
+                                <li>Incluir: Problemática, Justificación, Limitaciones</li>
+                                <li>Enviar a la Escuela para revisión</li>
+                            </ul>
+                            <div class="alert-box warning">
+                                <strong>⚠️ Importante:</strong> El anteproyecto NO se carga a esta plataforma. Se envía directamente a la Escuela.
+                            </div>
+                            <a href="#" class="btn btn-primary">📝 Llenar Plantilla Básica</a>
+                        </div>
+
+                        <!-- Vía B -->
+                        <div class="pathway-card via-b">
+                            <div class="pathway-icon">📚</div>
+                            <h3>Vía B: Estudiante en Metodología</h3>
+                            <p>Para estudiantes que cursaron Metodología de la Investigación</p>
+                            <ul>
+                                <li>Ya trabajaste con el Prof. de Metodología (Don Raúl)</li>
+                                <li>Plantilla Especial con primeros 3 capítulos</li>
+                                <li>Solo requiere verificación de la Escuela</li>
+                                <li>Proceso más ágil</li>
+                            </ul>
+                            <div class="alert-box info">
+                                <strong>✓ Ventaja:</strong> La Escuela solo realiza un "check" de verificación para agilizar el proceso.
+                            </div>
+                            <a href="#" class="btn btn-secondary">📋 Enviar para Verificación</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline de pasos -->
+                <div class="steps-container">
+                    <div class="steps-line"></div>
+
+                    <!-- PASO 1: Aprobación y Matrícula -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-info">
+                                <h3>Aprobación y Matrícula del TFG</h3>
+                                <p>Una vez que la Escuela apruebe tu anteproyecto (Vía A o B), recibirás una notificación de "Visto Bueno".</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box success">
+                            <strong>🎉 Próximo paso:</strong> Procede a realizar la matrícula oficial del TFG.
+                        </div>
+
+                        <div class="documents-section">
+                            <h4>📥 Recursos disponibles:</h4>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/MODALIDAD%20PROYECTO%20DE%20GRADUACI%C3%93N.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📄</div>
+                                    <div class="document-name">Plantilla Básica de Anteproyecto</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/MODALIDAD%20TESIS%20FORMATO%20INFORME%20COMPLETO.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📘</div>
+                                    <div class="document-name">Guía de Elaboración (TESIS)</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/MODALIDAD%20PROYECTO%20DE%20GRADUACI%C3%93N.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📘</div>
+                                    <div class="document-name">Guía de Elaboración (Proyecto de Graduación)</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/Gu%C3%ADa%20de%20Formato%20APA%207.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📘</div>
+                                    <div class="document-name">Guía de Formato APA 7</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 2: Asignación de Tutor -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-info">
+                                <h3>Asignación de Tu Tutor</h3>
+                                <p>Una vez matriculado, se te asignará un tutor especializado en tu área de investigación.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutor-info">
+                            <h4>📧 Información de tu Tutor</h4>
+                            <div class="alert-box info">
+                                <strong>Recibirás una notificación con:</strong>
+                                <ul>
+                                    <li>Nombre completo del tutor</li>
+                                    <li>Correo electrónico institucional</li>
+                                    <li>Número de teléfono/WhatsApp</li>
+                                    <li>Horario de disponibilidad</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 3: Drive Compartido -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-info">
+                                <h3>Creación del Espacio de Trabajo (Drive Compartido)</h3>
+                                <p>Se creará un Google Drive compartido entre tú y tu tutor. Este será el <strong>repositorio oficial</strong> de tu TFG.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box warning">
+                            <strong>📁 ¿Qué se guarda en el Drive?</strong>
+                            <ul>
+                                <li>Anteproyecto aprobado</li>
+                                <li>Todos los capítulos y adelantos</li>
+                                <li>Bitácoras semanales</li>
+                                <li>Retroalimentación del tutor</li>
+                                <li>Versiones del documento final</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>💡 Consejo:</strong> Mantén tu Drive organizado con carpetas por capítulos y fechas. Usa nombres claros para tus archivos (ej: "Capitulo1_v2_15oct2025.docx").
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: Bitácoras Semanales -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-info">
+                                <h3>Seguimiento Semanal: Bitácoras</h3>
+                                <p>Durante todo el desarrollo de tu TFG, deberás entregar bitácoras semanales.</p>
+                            </div>
+                        </div>
+
+                        <div class="time-alert warning">
+                            <strong>⏰ Frecuencia:</strong> Una bitácora cada semana durante todo el periodo del TFG.
+                        </div>
+
+                        <div class="documents-section">
+                            <h4>📥 Plantillas de Bitácora:</h4>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/DOCUMENTOS%20PRACTICA%20PROFESIONAL.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📊</div>
+                                    <div class="document-name">Plantilla de Bitácora Semanal</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="alert-box info">
+                            <strong>📌 Recuerda:</strong> Las bitácoras se suben al Drive compartido con tu tutor cada semana.
+                        </div>
+                    </div>
+
+                    <!-- PASO 5: Entrega del Documento Final -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <div class="step-info">
+                                <h3>Entrega del Documento Final</h3>
+                                <p>Cuando hayas completado tu TFG, debes cargar la versión final en el Drive compartido.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box info">
+                            <strong>✓ Requisitos del Documento Final:</strong>
+                            <ul>
+                                <li>Formato según normativa de la Escuela</li>
+                                <li>Todos los capítulos completos</li>
+                                <li>Referencias bibliográficas correctas</li>
+                                <li>Revisión ortográfica y gramatical</li>
+                            </ul>
+                        </div>
+
+                        <div class="documents-section">
+                            <h4>📥 Recursos para la entrega final:</h4>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/Reglamento%20Trabajos%20Finales%20de%20Graduacio%CC%81n%202024%2008-firmado%201.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📘</div>
+                                    <div class="document-name">Reglamento TFG</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/Gu%C3%ADa%20de%20Formato%20APA%207.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📘</div>
+                                    <div class="document-name">Guía de Formato APA 7</div>
+                                </a>
+                                <a href="https://ulatinauam-my.sharepoint.com/personal/craih_ulatina_cr/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcraih%5Fulatina%5Fcr%2FDocuments%2FRespaldo%20TFG%2FDefensas%20a%20distancia%202020%2D202X%2F2023%2FHeredia%2FI%202023%2FIng%2E%20Industrial%2FTFG%5FUlatina%5FSebastian%5FAlvarado%5FGonzalez%5F20190220489%2Epdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📄</div>
+                                    <div class="document-name">Ejemplo Documento TFG</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EYLtgtvEGZlDsCUvYEF1W4cBr5hh8vHg3d-k3tTRA1bWYg?e=q4353j" target="_blank" class="document-card">
+                                    <div class="document-icon">📄</div>
+                                    <div class="document-name">Errores Comunes de Entregas</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 6: Visto Bueno del Tutor -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">6</div>
+                            <div class="step-info">
+                                <h3>Visto Bueno del Tutor</h3>
+                                <p>Tu tutor revisará el documento final y debe dar su aprobación oficial antes de pasar a lectores.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box success">
+                            <strong>📌 Importante:</strong> El documento debe estar etiquetado como "Proyecto Final" o "Revisión Final" en el Drive antes de pasar a la siguiente etapa.
+                        </div>
+                    </div>
+
+                    <!-- PASO 7: Asignación de Lectores -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">7</div>
+                            <div class="step-info">
+                                <h3>Asignación de Lectores</h3>
+                                <p>Dependiendo de tu licenciatura, se asignarán uno o dos lectores especializados.</p>
+                            </div>
+                        </div>
+
+                        <div class="readers-section">
+                            <h4>🎓 Número de Lectores por Licenciatura (CRÍTICO)</h4>
+                            <div class="reader-distinction">
+                                <div class="reader-card ti">
+                                    <h4>📘 Licenciatura en Tecnologías de Información</h4>
+                                    <div style="font-size: 2.5rem; text-align: center; margin: 15px 0;">2️⃣</div>
+                                    <p style="text-align: center; font-weight: 600;">DOS (2) Lectores</p>
+                                </div>
+                                <div class="reader-card">
+                                    <h4 style="color: #93c844;">📗 Otras Licenciaturas</h4>
+                                    <ul>
+                                        <li>Seguridad Informática</li>
+                                        <li>Computación en la Nube</li>
+                                        <li>Gestión de Proyectos</li>
+                                        <li>Informática</li>
+                                    </ul>
+                                    <div style="font-size: 2.5rem; text-align: center; margin: 15px 0;">1️⃣</div>
+                                    <p style="text-align: center; font-weight: 600;">UN (1) Lector</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 8: Proceso de Retroalimentación -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">8</div>
+                            <div class="step-info">
+                                <h3>Proceso de Retroalimentación</h3>
+                                <p>Los lectores revisarán tu documento y proporcionarán retroalimentación directamente en el Drive compartido.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box info">
+                            <strong>📝 ¿Cómo funciona?</strong>
+                            <ul>
+                                <li>Los lectores comentan directamente en el documento del Drive</li>
+                                <li>Pueden solicitar correcciones o mejoras</li>
+                                <li>Tú realizas las modificaciones solicitadas</li>
+                                <li>El proceso continúa hasta la aprobación final</li>
+                            </ul>
+                        </div>
+
+                        <div class="time-alert warning">
+                            <strong>⏱️ Tiempo estimado:</strong> El proceso de lectoría puede tomar alrededor de 1 semana dependiendo de la complejidad del proyecto.
+                        </div>
+                    </div>
+
+                    <!-- PASO 9: Aprobación Final de Lectores -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">9</div>
+                            <div class="step-info">
+                                <h3>Aprobación Final de Lectores</h3>
+                                <p>Una vez que todos los lectores hayan dado su visto bueno, recibirás una notificación oficial.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box success">
+                            <strong>🎉 ¡Felicidades!</strong> Tu documento ha sido aprobado por la lectoría. Ahora puedes proceder a coordinar tu defensa.
+                        </div>
+                    </div>
+
+                    <!-- PASO 10: Coordinación de la Defensa -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">10</div>
+                            <div class="step-info">
+                                <h3>Coordinación de la Defensa</h3>
+                                <p>Se coordinará la fecha, hora y modalidad de tu defensa con la participación de tu tribunal.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>👥 Tribunal de Defensa:</strong>
+                            <ul>
+                                <li>Tu Tutor</li>
+                                <li>Lector(es) asignado(s)</li>
+                                <li>Representante de la Escuela</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PASO 11: Preparación para la Defensa -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">11</div>
+                            <div class="step-info">
+                                <h3>Preparación para la Defensa</h3>
+                                <p>Prepárate adecuadamente para tu presentación final</p>
+                            </div>
+                        </div>
+
+                        <div class="defense-section">
+                            <h4>💡 Tips para una Defensa Exitosa</h4>
+                            <div class="tips-grid">
+                                <div class="tip-card">
+                                    <strong>⏰ Tiempo</strong>
+                                    <p>Generalmente 20-30 minutos de presentación + preguntas</p>
+                                </div>
+                                <div class="tip-card">
+                                    <strong>📊 Presentación</strong>
+                                    <p>Prepara slides visuales y concisos sobre tu proyecto</p>
+                                </div>
+                                <div class="tip-card">
+                                    <strong>🎯 Enfoque</strong>
+                                    <p>Destaca: problema, solución, metodología y resultados</p>
+                                </div>
+                                <div class="tip-card">
+                                    <strong>🗣️ Práctica</strong>
+                                    <p>Ensaya tu presentación varias veces antes del día</p>
+                                </div>
+                                <div class="tip-card">
+                                    <strong>❓ Preguntas</strong>
+                                    <p>Anticipa posibles preguntas del tribunal</p>
+                                </div>
+                                <div class="tip-card">
+                                    <strong>📱 Tecnología</strong>
+                                    <p>Verifica equipos con anticipación (micrófono, cámara)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 12: Carga Final del Documento -->
+                    <div class="step-item fade-in">
+                        <div class="step-header">
+                            <div class="step-number">12</div>
+                            <div class="step-info">
+                                <h3>Carga Final del Documento Aprobado</h3>
+                                <p>Solo al finalizar todo el proceso y aprobar la defensa, deberás cargar el documento final en la plataforma oficial.</p>
+                            </div>
+                        </div>
+
+                        <div class="time-alert warning">
+                            <strong>⚠️ Importante:</strong> Esta carga se realiza únicamente al <strong>final del cuatrimestre</strong>, después de haber aprobado tu defensa.
+                        </div>
+
+                        <div class="documents-section">
+                            <h4>📥 Plantillas de documentos finales para entregar:</h4>
+                            <div class="documents-grid">
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EfgTGHjZmT5Eln3fSFPYV3MBD465l6Y8W3E1oe6aae0_Og?e=QAzZcy" target="_blank" class="document-card">
+                                    <div class="document-icon">👥</div>
+                                    <div class="document-name">Tribunal Examinador</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EdpMMU4nBzREthha4FhGD8UBcGl7OrjI5NcxxCLKtlV93w?e=Wp7wND" target="_blank" class="document-card">
+                                    <div class="document-icon">📑</div>
+                                    <div class="document-name">Carta Segmentada de Tribunal (Solo cuando se requiere)</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EU4LZS7KtuVKg3RIOhZpcaoBHzankZMUlxSKY240FJGGEA?e=qq9LEo" target="_blank" class="document-card">
+                                    <div class="document-icon">✍️</div>
+                                    <div class="document-name">Declaración Jurada</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/3.%20Licencia%20de%20distribuci%C3%B3n%20no%20exclusiva%20-%20LATINA.pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">📜</div>
+                                    <div class="document-name">Licencia de Distribución No Exclusiva</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/4.%20Carta%20de%20solicitud%20de%20embargo-ULATINA%20(Solo%20cuando%20se%20requiera).pdf" target="_blank" class="document-card">
+                                    <div class="document-icon">🔒</div>
+                                    <div class="document-name">Carta de Solicitud de Embargo</div>
+                                </a>
+                                <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EaLHYvUUaitErpSmyoSg2aABc5FaM3kwEJa4kX3Fs9lnJA?e=AiFtlQ" target="_blank" class="document-card">
+                                    <div class="document-icon">📧</div>
+                                    <div class="document-name">Carta de Tutor</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="https://miulatinaac-my.sharepoint.com/personal/isabella_lozano_ulatina_net/Documents/Criterios%20para%20la%20recepci%C3%B3n%20de%20TFG.2024.pdf" target="_blank" class="btn btn-primary">
+                            🚀 Pasos para Entregar el TFG al CRAI
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="info-section">
+                    <h3 class="info-title">Información Adicional</h3>
+                    <div class="info-cards-grid">
+                        <div class="info-card">
+                            <div class="info-icon">⏰</div>
+                            <h4>Horarios de Atención</h4>
+                            <p>Lunes a Viernes: 2:00 PM - 4:00 PM</p>
+                            <p>Coordinación Académica</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <h4>Contacto Directo</h4>
+                            <p>infosistemas@ulatina.cr</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">📚</div>
+                            <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug" target="_blank">Recursos</a></h4>
+                            <p>Plantillas de documentos</p>
+                            <p>Guías de procedimiento</p>
+                            <p>FAQs y tutoriales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Animaciones de entrada con Intersection Observer
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.step-item').forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // Track de descargas de documentos
+            document.querySelectorAll('.document-card[href]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const fileName = this.querySelector('.document-name').textContent.trim();
+                    console.log(`Descarga iniciada: ${fileName} - Proceso: TFG`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
