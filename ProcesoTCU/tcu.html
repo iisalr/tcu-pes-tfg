@@ -245,6 +245,8 @@
       align-items: center;
       gap: 15px;
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
 
     .document-card:hover {
@@ -271,49 +273,6 @@
       font-weight: 700;
       color: #006482;
       font-size: 1.1rem;
-    }
-
-    /* Descargas Rápidas */
-    .quick-downloads {
-      background: rgba(147, 200, 68, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .quick-downloads h5 {
-      color: #006482;
-      font-weight: 700;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-
-    .quick-download-links {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .quick-download-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: white;
-      color: #006482;
-      padding: 8px 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 100, 130, 0.2);
-    }
-
-    .quick-download-link:hover {
-      background: #006482;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 100, 130, 0.3);
     }
 
     /* Alertas de Tiempo */
@@ -459,20 +418,20 @@
       line-height: 1.6;
     }
 
-     footer {
-  background: #58585a;
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-  margin-top: 60px;
-  border-top: 3px solid #93c844;
-  }
+    footer {
+      background: #58585a;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+      border-top: 3px solid #93c844;
+    }
 
-  footer p {
-  margin: 0;
-  font-size: 0.95rem;
-  opacity: 0.9;
-  }
+    footer p {
+      margin: 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -568,26 +527,14 @@
             <div class="documents-section">
               <div class="documents-title">📋 Documentos requeridos:</div>
               <div class="documents-grid">
-                <div class="document-card">
+                <a href="documentos/anteproyecto_tcu.docx" download class="document-card">
                   <div class="document-icon">📄</div>
                   <div class="document-name">Anteproyecto TCU</div>
-                </div>
-                <div class="document-card">
+                </a>
+                <a href="documentos/carta_aceptacion.docx" download class="document-card">
                   <div class="document-icon">🏢</div>
                   <div class="document-name">Carta de aceptación de la empresa</div>
-                </div>
-              </div>
-
-              <div class="quick-downloads">
-                <h5>Descargas rápidas:</h5>
-                <div class="quick-download-links">
-                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EYi09R49rUFNowQN1HHUQ1YB5-rMSEhGSp0MPaS0NZm34w?e=iamHk5" target="_blank" class="quick-download-link">
-                    📄 Anteproyecto TCU
-                  </a>
-                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/ETBFE7u68OVOrh2RcY41XYMBYSUhV-BC2-Xe5ns2LRMNBw?e=C7Oipp" target="_blank" class="quick-download-link">
-                    🏢 Carta de Aceptación
-                  </a>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -609,10 +556,10 @@
             <div class="documents-section">
               <div class="documents-title">🎯 Acción requerida:</div>
               <div class="documents-grid">
-                <div class="document-card">
+                <a href="https://bit.ly/ULatina_AutoServicio" target="_blank" class="document-card">
                   <div class="document-icon">🔗</div>
                   <div class="document-name">Cargar documentos al sistema</div>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -644,19 +591,10 @@
             <div class="documents-section">
               <div class="documents-title">📊 Documentos requeridos:</div>
               <div class="documents-grid">
-                <div class="document-card">
+                <a href="documentos/plantilla_bitacora.docx" download class="document-card">
                   <div class="document-icon">📊</div>
-                  <div class="document-name">Avance de bitácoras</div>
-                </div>
-              </div>
-
-              <div class="quick-downloads">
-                <h5>Descargas rápidas:</h5>
-                <div class="quick-download-links">
-                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EfZ8thnI8xVArmoathkaWQEBG1w4WHFM8yZdlwtjIQZmdg?e=2hScDJ" target="_blank" class="quick-download-link">
-                    📊 Formato de Bitácoras
-                  </a>
-                </div>
+                  <div class="document-name">Formato de Bitácoras</div>
+                </a>
               </div>
             </div>
 
@@ -678,10 +616,10 @@
             <div class="documents-section">
               <div class="documents-title">📋 Documentos requeridos:</div>
               <div class="documents-grid">
-                <div class="document-card">
+                <a href="documentos/plantilla_bitacora.docx" download class="document-card">
                   <div class="document-icon">📋</div>
                   <div class="document-name">Segundo avance de bitácoras</div>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -703,26 +641,14 @@
             <div class="documents-section">
               <div class="documents-title">📚 Documentos requeridos:</div>
               <div class="documents-grid">
-                <div class="document-card">
+                <a href="documentos/informe_final_tcu.docx" download class="document-card">
                   <div class="document-icon">📖</div>
                   <div class="document-name">Informe final TCU</div>
-                </div>
-                <div class="document-card">
+                </a>
+                <a href="documentos/carta_aprobacion.docx" download class="document-card">
                   <div class="document-icon">✅</div>
                   <div class="document-name">Carta de aprobación</div>
-                </div>
-              </div>
-
-              <div class="quick-downloads">
-                <h5>Descargas rápidas:</h5>
-                <div class="quick-download-links">
-                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/EYGOSvEjob1JslNNleO7iTIBZeTlIb8vdjUDBYdfzpE_-w?e=zoWknX" target="_blank" class="quick-download-link">
-                    📖 Informe Final TCU
-                  </a>
-                  <a href="https://miulatinaac-my.sharepoint.com/:w:/g/personal/isabella_lozano_ulatina_net/ESD3MqbJT45Gt7ZK5QYLqTMBTy3-ITtYLyTY5obP3IBmDw?e=05AKWJ" target="_blank" class="quick-download-link">
-                    ✅ Carta de Aprobación
-                  </a>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -751,7 +677,7 @@
 
             <div class="info-card">
               <div class="info-icon">📚</div>
-              <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug">Recursos</a></h4>
+              <h4><a href="https://ulatinauam-my.sharepoint.com/:p:/g/personal/lindsay_rubio_ulatina_cr/EU0poTnSOZBCmVptZRoSFBoBkJIN4ShXMc1EOIZ9ELiMCw?rtime=F-lnS5j_3Ug" target="_blank">Recursos</a></h4>
               <p>Plantillas de documentos</p>
               <p>Guías de procedimiento</p>
               <p>FAQs y tutoriales</p>
@@ -785,9 +711,10 @@
       });
     });
   </script>
-   <!-- Footer -->
+
+  <!-- Footer -->
   <footer>
-  <p>Copyright © 2025. All rights reserved.</p>
+    <p>Copyright © 2025. All rights reserved.</p>
   </footer>
 </body>
 </html>
