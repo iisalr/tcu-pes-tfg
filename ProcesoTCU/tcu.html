@@ -159,6 +159,18 @@
       opacity: 0;
       transform: translateY(30px);
     }
+    .step-item::before {
+     content: '';
+     position: absolute;
+     left: -75px;
+     top: 30px;
+     width: 25px;
+     height: 25px;
+     background: #93c844;
+     border-radius: 50%;
+     z-index: 2;
+     box-shadow: 0 0 0 8px white, 0 0 0 12px #93c844;
+    }
 
     .step-item.fade-in {
       animation: slideInUp 0.6s ease forwards;
